@@ -88,7 +88,9 @@ export function MakeAppt({ navigation }) {
             const respone = await fetch(`http://${IP}:8080/appt`,
                 {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { 
+                        "Content-Type": "application/json", 
+                        Authorization: `Bearer ${token}` },
                     body: JSON.stringify(appt)
                 }
             )

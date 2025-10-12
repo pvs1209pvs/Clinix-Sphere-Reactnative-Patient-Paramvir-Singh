@@ -1,10 +1,77 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { SignUp } from './SignUp';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SignIn } from './SignIn';
+import { AuthProvider, useAuth } from './AuthProvider';
+import { MakeAppt } from './MakeAppt';
+import Dashboard from './Dashboard';
+import { Pres } from './Pres';
+
+const Stack = createNativeStackNavigator();
+
+export const IP = "192.168.2.15"
 
 export default function App() {
+
+  return (
+    <AuthProvider>
+
+      <NavigationContainer>
+
+        <Stack.Navigator initialRouteName="SignUp">
+
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{ title: 'Sign Up' }}
+          />
+
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ title: 'SignUp' }}
+          />
+
+          <Stack.Screen
+            name="MakeAppt"
+            component={MakeAppt}
+
+            options={{ title: 'Make Appointment' }}
+          />
+
+          <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={({ navigation }) => ({
+              title: 'Dashboard',
+              headerRight: () => (
+                <Button title="Add" color="#000" />
+              )
+            })}
+          />
+
+
+          <Stack.Screen
+            name="Pres"
+            component={Pres}
+            options={{ title: 'Prescription' }}
+          />
+
+        </Stack.Navigator>
+
+      </NavigationContainer>
+    </AuthProvider>
+
+  );
+
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
+      <SignUp />
       <StatusBar style="auto" />
     </View>
   );

@@ -15,3 +15,18 @@ For Linux you can use the following commnads to directly get your IP address.
 
 
 Ideally I would have loved to deployed the Express.js server on an EC2 instance for an easier access, if it weren't for a lack of time. If you have any questions for me le know, thank you!
+
+
+<p float="left" align="center">
+<img src="demo/1.png" width=25% height=25%>
+<img src="demo/2.png" width=25% height=25%>
+<img src="demo/3.png" width=25% height=25%>
+<img src="demo/4.png" width=25% height=25%>
+<img src="demo/5.png" width=25% height=25%>
+</p>
+<p float="left" align="center">
+<img src="demo/6.png" width=40% height=40%>
+<img src="demo/7.png" width=40% height=40%>
+<img src="demo/8.png" width=40% height=40%>
+<img src="demo/9.png" width=40% height=40%>
+</p>

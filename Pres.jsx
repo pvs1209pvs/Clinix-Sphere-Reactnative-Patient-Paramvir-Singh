@@ -1,6 +1,6 @@
 import { use, useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import { IP } from "./App";
+import { endpoint } from "./App";
 import { useAuth } from "./AuthProvider";
 
 
@@ -14,7 +14,7 @@ export function Pres({ route }) {
         try {
             console.log(`fetching pres ${route.params.apptId}`)
             const response = await fetch(
-                `http://${IP}:8080/pres/${route.params.apptId}`,
+                `https://${endpoint}/pres/${route.params.apptId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

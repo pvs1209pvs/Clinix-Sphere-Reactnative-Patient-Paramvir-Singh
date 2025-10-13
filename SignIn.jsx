@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Text, TextInput, View } from "react-native";
 import { useAuth } from "./AuthProvider";
-import { IP } from "./App";
+import { endpoint } from "./App";
 import { jwtDecode } from "jwt-decode";
 
 export function SignIn({ navigation }) {
@@ -18,7 +18,7 @@ export function SignIn({ navigation }) {
         try {
 
             const response = await fetch(
-                `http://${IP}:8080/login/patient`,
+                `https://${endpoint}/login/patient`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ export function SignIn({ navigation }) {
 
 
     return (
-        <View style={{ padding: 20 }}>>
+        <View style={{ padding: 20 }}>
 
             <TextInput
                 placeholder="Username"

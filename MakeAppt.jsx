@@ -1,7 +1,7 @@
 import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "./AuthProvider";
 import { useEffect, useState } from "react";
-import { IP } from "./App";
+import { endpoint } from "./App";
 
 
 const styles = StyleSheet.create({
@@ -46,7 +46,7 @@ export function MakeAppt({ navigation }) {
 
         try {
 
-            const response = await fetch(`http://${IP}:8080/doctor`,
+            const response = await fetch(`https://${endpoint}/doctor`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -85,7 +85,7 @@ export function MakeAppt({ navigation }) {
         console.log(appt)
 
         try {
-            const respone = await fetch(`http://${IP}:8080/appt`,
+            const respone = await fetch(`https://${endpoint}/appt`,
                 {
                     method: "POST",
                     headers: { 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, } from 'react-native';
 import { useAuth } from './AuthProvider';
-import { IP } from './App';
+import { endpoint } from './App';
 import { jwtDecode } from 'jwt-decode';
 
 export function SignUp({ navigation }) {
@@ -21,7 +21,7 @@ export function SignUp({ navigation }) {
         try {
 
             const response = await fetch(
-                `http://${IP}:8080/signup/patient`,
+                `https://${endpoint}/signup/patient`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

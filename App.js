@@ -12,7 +12,7 @@ import { Pres } from './Pres';
 
 const Stack = createNativeStackNavigator();
 
-export const IP = "192.168.2.15"
+export const endpoint = "clinix-sphere-express-backend-param.vercel.app"
 
 export default function App() {
 

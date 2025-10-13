@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { useAuth } from './AuthProvider';
-import { IP } from './App';
+import { endpoint } from './App';
 import { jwtDecode } from 'jwt-decode';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -23,7 +23,7 @@ export default function Dashboard({ navigation }) {
         try {
             console.log(`fetching appts for ${patientId}`)
             const respose = await fetch(
-                `http://${IP}:8080/appt?${params.toString()}`,
+                `https://${endpoint}/appt?${params.toString()}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

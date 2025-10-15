@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         padding: 24,
-        justifyContent: 'flex-start',  // align items from top
+        justifyContent: 'flex-start',  
     paddingTop: '10%', 
     },
     title: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     button: {
-        backgroundColor: '#8c00ffff', // modern orange accent
+        backgroundColor: '#8c00ffff',
         paddingVertical: 14,
         borderRadius: 10,
         alignItems: 'center',
@@ -140,30 +140,4 @@ export function SignIn({ navigation }) {
         </View>
     )
 
-    return (
-        <View style={{ padding: 20 }}>
-
-            <TextInput
-                placeholder="Username"
-                autoCapitalize="none"
-                value={user.username}
-                onChangeText={(value) => handleChange('username', value)}
-            />
-
-            <TextInput
-                placeholder="Password"
-                secureTextEntry
-                autoCapitalize="none"
-                value={user.password}
-                onChangeText={(value) => handleChange('password', value)}
-            />
-
-
-            <View style={{ marginTop: 20 }}>
-                <Button title="Sign In" onPress={signInApiCall} />
-
-            </View>
-
-        </View>
-    )
 }

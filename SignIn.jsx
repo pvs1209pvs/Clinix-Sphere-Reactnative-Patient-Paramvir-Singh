@@ -1,8 +1,62 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Text, TextInput, View } from "react-native";
+import { Alert, Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from "react-native";
 import { useAuth } from "./AuthProvider";
 import { endpoint } from "./App";
 import { jwtDecode } from "jwt-decode";
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        padding: 24,
+        justifyContent: 'flex-start',  // align items from top
+    paddingTop: '10%', 
+    },
+    title: {
+        fontSize: 28,
+        fontWeight: '700',
+        color: '#222',
+        marginBottom: 8,
+        textAlign: 'center',
+    },
+    subtitle: {
+        fontSize: 16,
+        color: '#777',
+        marginBottom: 30,
+        textAlign: 'center',
+    },
+    input: {
+        backgroundColor: '#f6f6f6',
+        borderRadius: 10,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        fontSize: 16,
+        color: '#222',
+        marginBottom: 15,
+    },
+    button: {
+        backgroundColor: '#8c00ffff', // modern orange accent
+        paddingVertical: 14,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    footerText: {
+        textAlign: 'center',
+        color: '#777',
+        marginTop: 20,
+        fontSize: 14,
+    },
+    link: {
+        color: '#8c00ffff',
+        fontWeight: '600',
+    },
+});
 
 export function SignIn({ navigation }) {
 
@@ -54,6 +108,37 @@ export function SignIn({ navigation }) {
         setUser((prev) => ({ ...prev, [field]: value }));
     };
 
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>Welcome Back</Text>
+            <Text style={styles.subtitle}>Sign in to continue</Text>
+
+            <TextInput
+                style={styles.input}
+                placeholder="Username"
+                placeholderTextColor="#888"
+                autoCapitalize="none"
+                value={user.username}
+                onChangeText={(value) => handleChange('username', value)}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Password"
+                placeholderTextColor="#888"
+                secureTextEntry
+                autoCapitalize="none"
+                value={user.password}
+                onChangeText={(value) => handleChange('password', value)}
+            />
+
+            <TouchableOpacity style={styles.button} onPress={signInApiCall}>
+                <Text style={styles.buttonText}>Sign In</Text>
+            </TouchableOpacity>
+
+          
+        </View>
+    )
 
     return (
         <View style={{ padding: 20 }}>

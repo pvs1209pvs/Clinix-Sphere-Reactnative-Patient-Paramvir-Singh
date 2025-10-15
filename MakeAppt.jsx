@@ -1,10 +1,11 @@
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useAuth } from "./AuthProvider";
 import { useEffect, useState } from "react";
 import { endpoint } from "./App";
 
 
-const styles = StyleSheet.create({
+
+/* const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -33,6 +34,57 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 28,
         fontWeight: 'bold',
+    },
+    appointButton: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#007AFF', // iOS blue-like button
+        paddingVertical: 6,
+        paddingHorizontal: 14,
+        borderRadius: 6,
+        color: '#ffffffff'
+    },
+    name: {
+        fontSize: 22,        // ⬅️ increased from 18 to 22
+        fontWeight: '700',   // ⬅️ slightly bolder for emphasis
+        color: '#111',
+    }
+}); */
+
+const styles = StyleSheet.create({
+    card: {
+        backgroundColor: '#fff',
+        marginVertical: 8,
+        marginHorizontal: 4,
+        padding: 8,
+        borderRadius: 12,
+        elevation: 1, 
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+    },
+    cardTitle: {
+        fontSize: 20,
+        fontWeight: '600',
+        color: '#222',
+        marginBottom: 6,
+    },
+    cardText: {
+        fontSize: 14,
+        color: '#555',
+        marginBottom: 4,
+    },
+    appointButton: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#8c00ffff',
+        paddingVertical: 6,
+        paddingHorizontal: 8,
+        borderRadius: 6,
+        marginTop: 10,
+    },
+    appointButtonText: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: '500',
     },
 });
 
@@ -88,9 +140,10 @@ export function MakeAppt({ navigation }) {
             const respone = await fetch(`https://${endpoint}/appt`,
                 {
                     method: "POST",
-                    headers: { 
-                        "Content-Type": "application/json", 
-                        Authorization: `Bearer ${token}` },
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
                     body: JSON.stringify(appt)
                 }
             )
@@ -104,24 +157,30 @@ export function MakeAppt({ navigation }) {
 
     }
 
-
     return (
-        <View>
-            <Text>
-            </Text>
+        <FlatList
+            data={doctors}
+            keyExtractor={(item) => item._id}
+            contentContainerStyle={{ padding: 8, paddingBottom: 8 }}
+            renderItem={({ item, index }) => (
+                <View style={styles.card}>
+                    <Text style={styles.cardTitle}>Dr. {item.name}</Text>
+                    <Text style={styles.cardText}>Location: {item.address}</Text>
+                    <Text style={styles.cardText}>ID: {item._id}</Text>
 
-            {
-                doctors.map((value, index) => (
-                    <View key={index} style={styles.item}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{value._id}</Text>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{value.name}</Text>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{value.address}</Text>
-                        <Button title="Appoint" onPress={() => makeAppointmentOnClick(index)}></Button>
-                    </View>
-                ))
-            }
-        </View>
+                    <TouchableOpacity
+                        style={styles.appointButton}
+                        onPress={() => makeAppointmentOnClick(index)}
+                    >
+                        <Text style={styles.appointButtonText}>Appoint</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+        />
+
     )
+
+
 }
 
 

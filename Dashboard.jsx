@@ -66,18 +66,19 @@ export default function Dashboard({ navigation }) {
         });
     }, [navigation]);
 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity onPress={() => handlePress(item._id)}>
-            <View style={styles.item}>
-                <Text style={styles.itemText}>Doctor Name: {item.doctorName}</Text>
-                <Text style={styles.itemText}>Patient Name: {item.forPatient}</Text>
-                <Text style={styles.itemText}>Status: {item.status}</Text>
-                <Text style={styles.itemText}>Time: {item.time}</Text>
-                <Text style={styles.itemText}>Appointment Id: {item._id}</Text>
-                <Text style={styles.itemText}>Doctor Id: {item.byDoctor}</Text>
-            </View>
-        </TouchableOpacity>
-    );
+   const renderItem = ({ item }) => (
+  <TouchableOpacity onPress={() => handlePress(item._id)}>
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>{item.doctorName}</Text>
+      <Text style={styles.cardText}>Patient: {item.forPatient}</Text>
+      <Text style={styles.cardText}>Status: {item.status}</Text>
+      <Text style={styles.cardText}>Time: {item.time}</Text>
+      <Text style={styles.cardText}>Appointment Id: {item._id}</Text>
+      <Text style={styles.cardText}>Doctor Id: {item.byDoctor}</Text>
+    </View>
+  </TouchableOpacity>
+);
+
 
     return (
         <View style={styles.container}>
@@ -96,33 +97,52 @@ export default function Dashboard({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    item: {
-        padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
-    },
-    itemText: {
-        fontSize: 16,
-    },
-    fab: {
-        position: 'absolute',
-        right: 20,
-        bottom: 20,
-        backgroundColor: '#ff6600',
-        width: 56,
-        height: 56,
-        borderRadius: 28,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 5, // shadow for Android
-    },
-    fabText: {
-        color: '#fff',
-        fontSize: 28,
-        fontWeight: 'bold',
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  card: {
+    backgroundColor: '#fff',
+    marginHorizontal: 16,
+    marginVertical: 8,
+    padding: 16,
+    borderRadius: 12,
+    elevation: 3, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 6,
+  },
+  cardText: {
+    fontSize: 14,
+    color: '#555',
+    marginBottom: 4,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 80,
+    right: 30,
+    backgroundColor: '#8c00ffff',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+  },
+  fabText: {
+    color: '#fff',
+    fontSize: 32,
+    fontWeight: '700',
+  },
 });

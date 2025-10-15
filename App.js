@@ -32,7 +32,7 @@ export default function App() {
           <Stack.Screen
             name="SignIn"
             component={SignIn}
-            options={{ title: 'SignUp' }}
+            options={{ title: 'Sign In' }}
           />
 
           <Stack.Screen

@@ -93,8 +93,11 @@ export function SignIn({ navigation }) {
                     routes: [{ name: 'Dashboard' }]
                 })
             }
-            else {
-                Alert.alert("Alert", "Invalid credentials, try again")
+            else if(response.status==400){
+                Alert.alert("Alert", "Username already exists")
+            }
+             else if(response.status==401){
+                Alert.alert("Alert", "Invalid credentials")
             }
 
         } catch (error) {

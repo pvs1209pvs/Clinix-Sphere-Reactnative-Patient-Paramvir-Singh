@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet} from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import { useAuth } from './AuthProvider';
 import { endpoint } from './App';
 import { jwtDecode } from 'jwt-decode';
@@ -73,6 +73,8 @@ export function SignUp({ navigation }) {
 
         try {
 
+            console.log("signing up patient")
+            console.log(patient)
             const response = await fetch(
                 `https://${endpoint}/signup/patient`,
                 {
@@ -82,15 +84,28 @@ export function SignUp({ navigation }) {
                 });
 
             const data = await response.json();
+
+            if(response.ok){
+
+            
             setToken(data.token)
-            setPatientId(data.patientId)
             console.log(`patient id ${data.patientId}`)
             const decoded = jwtDecode(data.token)
             setPatientName(decoded.patientName)
+            setPatientId(decoded.patientId)
 
             navigation.replace('Dashboard')
+            }
+            else if(response.status==400){
+                Alert.alert("Alert","Username already exists")
+            }
+            else if(response.status==401){
+                Alert.alert("Alert","Invalid credentials")
+
+            }
         }
         catch (error) {
+            console.error(data)
             console.error(error)
         }
 
@@ -154,47 +169,5 @@ export function SignUp({ navigation }) {
         </View>
     )
 
-    return (
-        <View style={{ padding: 20 }}>
-
-            <TextInput
-                placeholder="Name"
-                value={patient.name}
-                onChangeText={(value) => handleChange('name', value)}
-            />
-
-            <TextInput
-                placeholder="Address"
-                value={patient.address}
-                onChangeText={(value) => handleChange('address', value)}
-            />
-
-            <TextInput
-                placeholder="Username"
-                autoCapitalize="none"
-                value={patient.username}
-                onChangeText={(value) => handleChange('username', value)}
-            />
-
-            <TextInput
-                placeholder="Password"
-                secureTextEntry
-                autoCapitalize="none"
-                value={patient.password}
-                onChangeText={(value) => handleChange('password', value)}
-            />
-
-            <View style={{ marginTop: 20 }}>
-                <Button title="Sign Up" onPress={signUpAPICall} />
-
-            </View>
-
-            <View style={{ marginTop: 20 }}>
-                <Button title="Sign In (Alrady have an account)" onPress={() => navigation.navigate('SignIn')} />
-
-            </View>
-
-
-        </View>
-    );
+ 
 }

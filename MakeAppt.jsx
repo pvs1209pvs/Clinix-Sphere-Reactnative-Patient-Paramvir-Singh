@@ -4,52 +4,6 @@ import { useEffect, useState } from "react";
 import { endpoint } from "./App";
 
 
-
-/* const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    item: {
-        padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
-    },
-    itemText: {
-        fontSize: 16,
-    },
-    fab: {
-        position: 'absolute',
-        right: 20,
-        bottom: 20,
-        backgroundColor: '#ff6600',
-        width: 56,
-        height: 56,
-        borderRadius: 28,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 5, // shadow for Android
-    },
-    fabText: {
-        color: '#fff',
-        fontSize: 28,
-        fontWeight: 'bold',
-    },
-    appointButton: {
-        alignSelf: 'flex-start',
-        backgroundColor: '#007AFF', // iOS blue-like button
-        paddingVertical: 6,
-        paddingHorizontal: 14,
-        borderRadius: 6,
-        color: '#ffffffff'
-    },
-    name: {
-        fontSize: 22,        // ⬅️ increased from 18 to 22
-        fontWeight: '700',   // ⬅️ slightly bolder for emphasis
-        color: '#111',
-    }
-}); */
-
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
